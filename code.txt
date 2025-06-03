@@ -1,0 +1,692 @@
+#######################################   frontend  ################################################
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nail Disease Detection</title>
+  <link rel="stylesheet" href="/templates/css/main.css" />
+   <style>
+    * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Header */
+header {
+  width: 100%;
+  padding: 20px 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #4caf87;
+  z-index: 10;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+nav a:hover {
+  color: #00ffd9;
+}
+
+/* Page sections */
+.page-section1 {
+  min-height: 100vh;
+  padding: 120px 60px 60px;
+  position: relative;
+  z-index: 2;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  color: #ffffff;
+  
+}
+
+/* Unique backgrounds per section */
+#home {
+  background: linear-gradient(to right, rgba(0, 150, 136, 0.8), rgba(0, 150, 136, 0.2)), /* Adjusted for more transparency */
+              url('/static/doctor.jpeg');
+              background-size: cover;
+  background-position: center;
+}
+
+#about {
+  background: linear-gradient(to right, rgba(235, 235, 240, 0.8), rgba(235, 235, 240, 0.4)), /* Adjusted for more transparency */
+              url('../templates/sister.jpeg');
+  background-size: cover;
+  background-position: center;
+}
+
+#nail-disease-home {
+  background: linear-gradient(to right,  rgba(235, 235, 240, 0.8), rgba(63, 81, 181, 0)),
+              url('assets/nail-home-bg.jpg');
+}
+
+#nail-disease-prediction {
+  background: linear-gradient(to right, rgba(235, 235, 240, 0.8), rgba(63, 81, 181, 0)),
+              url('assets/prediction-bg.jpg');
+}
+
+.content {
+  max-width: 600px;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.content h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.content p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+
+.models-section {
+  text-align: center;
+  padding: 60px 20px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.models-section h2 {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.models-section p {
+  font-size: 18px;
+  margin-bottom: 40px;
+  color: #666;
+}
+
+.models-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
+.model-card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  width: 250px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.model-card:hover {
+  transform: translateY(-10px);
+}
+
+.model-card .circle {
+  width: 80px;
+  height: 80px;
+  background: #56d3a3;
+  border-radius: 50%;
+  margin: 0 auto 20px;
+}
+
+.model-card h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #111;
+}
+
+.model-card p {
+  font-size: 14px;
+  color: #555;
+}
+
+.about-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+}
+
+/* Reset default styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Arial', sans-serif;
+    }
+
+    /* Style for the about section */
+    .about-section {
+      padding: 40px 20px;
+      background-color: #ffffff; /* Plain white background */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Container for image and text */
+    .about-container {
+      display: flex;
+      align-items: center;
+      max-width: 1200px;
+      width: 100%;
+      gap: 40px;
+    }
+
+    /* Style for the image */
+    .about-image {
+      flex: 1;
+      max-width: 400px;
+    }
+
+    .about-image img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px; /* Keep the rounded corners as in the original image */
+    }
+
+    /* Style for the text */
+    .about-content {
+      flex: 1;
+      max-width: 600px;
+    }
+
+    .about-content h2 {
+      font-size: 28px;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+    }
+
+    .about-content p {
+      font-size: 16px;
+      line-height: 1.6;
+      color: #555;
+    }
+
+    /* Responsive design for smaller screens */
+    @media (max-width: 768px) {
+      .about-container {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .about-image {
+        max-width: 100%;
+      }
+
+      .about-content {
+        max-width: 100%;
+      }
+    }
+
+
+
+    /* General Reset */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+
+/* Section Styling */
+.nail-home-section {
+  text-align: center;
+  padding: 40px 20px;
+  background-color: #fff;
+}
+
+.nail-home-section h2 {
+  color: #1a1a1a;
+  font-size: 24px;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.nail-home-content h3 {
+  font-size: 22px;
+  color: #1a1a1a;
+  margin-top: 20px;
+}
+
+.nail-home-content p {
+  font-size: 16px;
+  max-width: 800px;
+  margin: 10px auto;
+  color: #333;
+  line-height: 1.6;
+}
+
+.predict-button {
+  background-color: #4caf87;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 15px;
+}
+
+/* Footer Section */
+.footer-section {
+  background-color: #24775c;
+  color: white;
+  padding: 40px 20px;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 20px;
+}
+
+.footer-col {
+  flex: 1 1 200px;
+}
+
+.footer-col h4 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.footer-col p,
+.footer-col input {
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.footer-col input[type="email"] {
+  padding: 6px;
+  width: 100%;
+  border: none;
+  border-radius: 4px;
+}
+
+.subscribe-button {
+  background-color: #4caf87;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.social-icons span {
+  margin-right: 10px;
+  font-size: 18px;
+}
+
+.upload-section {
+  text-align: center;
+  margin: 50px auto;
+  padding: 30px;
+  background: linear-gradient(to right, #f8f9fa, #ffffff);
+  max-width: 600px;
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.custom-file-upload {
+  display: inline-block;
+  background-color: #f0f0f0;
+  color: #333;
+  padding: 10px 25px;
+  border: 2px dashed #999;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: bold;
+}
+
+.custom-file-upload:hover {
+  background-color: #e0e0e0;
+  border-color: #666;
+}
+
+.predict-btn {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background-color: #28a745;
+  border: none;
+  border-radius: 25px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.predict-btn:hover {
+  background-color: #218838;
+  box-shadow: 0 0 10px rgba(33, 136, 56, 0.5);
+}
+
+.result {
+  margin-top: 25px;
+  font-size: 18px;
+  color: rgba(5, 101, 26, 0.5);
+  font-weight: bold;
+}
+
+#uploaded-image-container img {
+  margin-top: 15px;
+  max-width: 400px; /* Increased from 300px */
+  max-height: 400px; /* Increased from 300px */
+  border-radius: 10px;
+  box-shadow: 0 0 10px #aaa;
+}
+
+
+.error {
+  color: red;
+  font-weight: bold;
+}
+
+.spinner {
+  border: 6px solid #f3f3f3;
+  border-top: 6px solid #007bff;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin: 20px auto;
+}
+
+.hidden {
+  display: none;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">NAIL DISEASE DETECTION</div>
+    <nav>
+      <ul>
+        <li><a href="#home" class="nav-link">HOME</a></li>
+        <li><a href="#about" class="nav-link">ABOUT</a></li>
+        <li><a href="#nail-disease-prediction" class="nav-link">NAIL DISEASE PREDICTION</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="home" class="page-section1">
+      <h2>Welcome to Nail Disease Detection</h2>
+      <p>Upload an image of a nail to predict potential nail diseases using our AI-powered system.</p>
+    </section>
+
+    <section class="models-section">
+      <h2>MODELS EMPLOYED FOR THE PROJECT</h2>
+      <p>Transfer Learning Models</p>
+      <div class="models-container">
+        <div class="model-card">
+          <div class="circle"></div>
+          <h3>VGG16</h3>
+          <p>
+            VGG-16 is a convolutional neural network that is 16 layers deep. It is used to classify nail images for disease detection.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="about-section">
+      <div class="about-container">
+        <div class="about-image">
+          <img src="/static/sister.jpeg" alt="Doctor Image">
+        </div>
+        <div class="about-content">
+          <h2>ABOUT US</h2>
+          <p>
+            Our AI-powered system assists doctors by analyzing nail images to predict various systemic and dermatological diseases, streamlining the triage process and enabling faster, more accurate diagnoses.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="nail-disease-home" class="nail-home-section">
+      <div class="nail-home-content">
+        <h3>OUR PROJECT ON NAIL DISEASE</h3>
+        <p>
+          The Nail Image Processing System analyzes human nail images to detect various nail diseases by segmenting the nail and extracting features like color, shape, and texture. This system aids doctors in early disease diagnosis.
+        </p>
+      </div>
+    </section>
+
+    <section id="nail-disease-prediction" class="page-section upload-section">
+      <h2>Upload Nail Image</h2>
+      <form id="uploadForm" action="/predict" method="POST" enctype="multipart/form-data">
+        <label for="fileInput" class="custom-file-upload">
+          <span>Select Image</span>
+          <input type="file" name="file" id="fileInput" accept="image/*" required hidden />
+        </label>
+        <button type="submit" class="predict-btn">Predict</button>
+      </form>
+      <div class="result" id="result">
+        <div id="uploaded-image-container"></div>
+        <div id="prediction-result"></div>
+        <div id="loading-spinner" class="spinner hidden"></div>
+      </div>
+    </section>
+
+    <footer class="footer-section">
+      <div class="footer-container">
+        <div class="footer-col">
+          <h4>Reach at..</h4>
+          <p>📍 Location</p>
+          <p>📞 Call +01 1234567890</p>
+          <p>✉️ demo@gmail.com</p>
+          <div class="social-icons">
+            <span>🌐</span>
+            <span>🐦</span>
+            <span>💼</span>
+            <span>📸</span>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>About</h4>
+          <p>
+            Our AI system provides relief to overworked doctors by streamlining the triage process through nail disease detection.
+          </p>
+        </div>
+        <div class="footer-col">
+          <h4>Links</h4>
+          <p><a href="#home">Home</a></p>
+          <p><a href="#about">About</a></p>
+          <p><a href="#nail-disease-home">Nail</a></p>
+        </div>
+        <div class="footer-col">
+          <h4>Newsletter</h4>
+          <input type="email" placeholder="Enter email" />
+          <button class="subscribe-button">Subscribe</button>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    document.getElementById('uploadForm').addEventListener('submit', async function(event) {
+      event.preventDefault();
+
+      const fileInput = document.getElementById('fileInput');
+      const file = fileInput.files[0];
+      if (!file) {
+        document.getElementById('prediction-result').textContent = 'Please select a file';
+        return;
+      }
+
+      // Display the uploaded image
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const img = document.createElement('img');
+        img.src = e.target.result;
+        img.style.maxWidth = '300px';
+        const container = document.getElementById('uploaded-image-container');
+        container.innerHTML = '';
+        container.appendChild(img);
+      };
+      reader.readAsDataURL(file);
+
+      // Show loading spinner
+      const spinner = document.getElementById('loading-spinner');
+      spinner.classList.remove('hidden');
+
+      // Prepare form data
+      const formData = new FormData(this);
+
+      try {
+        const response = await fetch('http://127.0.0.1:5000/predict', {
+          method: 'POST',
+          body: formData
+        });
+
+        if (!response.ok) {
+          throw new Error('Server error: ' + response.status);
+        }
+
+        const data = await response.json();
+        const resultDiv = document.getElementById('prediction-result');
+        if (data.error) {
+          resultDiv.textContent = 'Error: ' + data.error;
+        } else {
+          resultDiv.textContent = `The person is diagnosed with ${data.prediction} Nail Disease`;
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        document.getElementById('prediction-result').textContent = 'Error: Failed to connect to the server. ' + error.message;
+      } finally {
+        spinner.classList.add('hidden');
+      }
+    });
+  </script>
+</body>
+</html>
+
+
+#######################################   backend  ################################################
+
+
+import os
+import numpy as np
+from flask import Flask, request, jsonify, render_template
+from werkzeug.utils import secure_filename
+from tensorflow.keras.models import load_model
+from tensorflow.keras.preprocessing import image
+
+app = Flask(__name__)
+app.config['UPLOAD_FOLDER'] = 'uploads'
+
+# Load your pre-trained model
+MODEL_PATH = os.path.join(os.path.dirname(__file__), "vgg-16-nail-disease.h5")  # Update with your model path
+model = load_model(MODEL_PATH)
+
+# Define the 19 disease classes based on your subfolder names
+disease_classes = [
+    'Darier_s disease',
+    'Muehrck-e_s lines',
+    'alopecia areata',  # Corrected spelling from "aloperia areata"
+    'beau_s lines',
+    'bluish nail',
+    'clubbing',
+    'eczema',
+    'half and half nail(Lindsay_s nails)',
+    'koilonychia',
+    'leukonychia',
+    'onycholysis',
+    'pale nail',
+    'red lunula',
+    'splinter hemmorrage',
+    'terry_s nail',
+    'white nail',
+    'yellow nails',
+    'healthy',  # Placeholder: replace with your 18th folder name
+    'inflected'   # Placeholder: replace with your 19th folder name
+]
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@app.route('/predict', methods=['POST'])
+def predict():
+    if 'file' not in request.files:
+        return jsonify({'error': 'No file uploaded'}), 400
+    
+    file = request.files['file']
+    if file.filename == '':
+        return jsonify({'error': 'No file selected'}), 400
+    
+    # Save the uploaded file
+    filename = secure_filename(file.filename)
+    if not os.path.exists(app.config['UPLOAD_FOLDER']):
+        os.makedirs(app.config['UPLOAD_FOLDER'])
+    saved_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+    file.save(saved_path)
+    
+    # Load and preprocess the image
+    img = image.load_img(saved_path, target_size=(224, 224))  # Adjust size to match your model
+    x = image.img_to_array(img)
+    x = np.expand_dims(x, axis=0)
+    x = x / 255.0  # Normalize if your model requires it
+    
+    # Make prediction
+    preds = model.predict(x)
+    predicted_class_index = np.argmax(preds, axis=1)[0]
+    
+    # Map the predicted index to the disease name
+    if predicted_class_index < len(disease_classes):
+        predicted_disease = disease_classes[predicted_class_index]
+    else:
+        return jsonify({'error': 'Prediction out of range'}), 500
+    
+    # Return the prediction as JSON
+    return jsonify({'prediction': predicted_disease})
+
+if __name__ == '__main__':
+    if not os.path.exists(app.config['UPLOAD_FOLDER']):
+        os.makedirs(app.config['UPLOAD_FOLDER'])
+    app.run(debug=True)
